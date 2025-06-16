@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Microsoft 365 - Simulacro</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f3f3; display: flex; align-items: center; justify-content: center; height: 100vh; }
+    .container { background: white; padding: 2rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 300px; border-radius: 6px; text-align: center; }
+    input { width: 100%; padding: 10px; margin: 10px 0; }
+    button { padding: 10px 20px; background: #0078d4; color: white; border: none; cursor: pointer; }
+    .notice { font-size: 0.8em; color: gray; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Simulacro Microsoft 365</h2>
+    <p>Ingrese su correo electrónico</p>
+    <form action="/resultado.html" method="get">
+      <input type="email" name="correo" placeholder="usuario@empresa.com" required />
+      <button type="submit">Siguiente</button>
+    </form>
+    <p class="notice">⚠ Este es un simulacro de ciberseguridad. No ingrese credenciales reales.</p>
+  </div>
+</body>
+</html>
