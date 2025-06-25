@@ -15,16 +15,21 @@
             font-family: "Segoe UI", "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima", "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI", "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha", "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
         }
 
-        html,
-        body {
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
             background-color: #e2e5d3;
-            color: #1b1b1b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
+        .container {
+    width: 100%;
+        }
         section{
-            display:table-cell;
+            
             vertical-align:middle;
-            height: 100vh;
             width: 100rem;
             max-width: 100%;
         }
